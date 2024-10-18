@@ -1,0 +1,17 @@
+--configurar o pgadmin4
+docker run --name pgamdin4 -p 15432:80 -e PGADMIN_DEFAULT_EMAIL=admin@admin.com -e PGADMIN_DEFAULT_PASSWORD=admin dpage/pgadmin4
+--configurar o postgres bd
+docker run --name libraryapi -p 5432:5432 -e POSTGRES_PASSWORD=postgres -e POSTGRES_USER=postgres -e POSTGRES_DB=library postgres:17.0
+--comando para listar serviços docker atuais
+docker ps
+--podemos buscar imagens e documentações de uso do docker e de suas configurações diretamente no docker hub--
+--parar container--
+docker stop nome_container
+--startar container--
+docker start nome_container
+
+--Para fazer dois containers se comunicarem entre si precisa criar uma network para que eles sejam ingressados e se enxerguem nela
+vale lembrar que para fazer o container se comunicar na network ja devemos criar ele dentro dela, especificando o parametro --network nome_network
+sendo assim é necessário realizar a criação de uma network de maneira antecipada com o comando --docker network create nome_network --
+
+--depois de colocar os conteiners em uma network eles conseguem se comunicar por meio dos seus nomes e portas
