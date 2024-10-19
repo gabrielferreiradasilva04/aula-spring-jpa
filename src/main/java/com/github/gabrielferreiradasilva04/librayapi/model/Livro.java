@@ -8,6 +8,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -15,24 +17,33 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+
+@Entity
+@Table(name = "livro")
 @Getter
 @Setter
-@ToString
+@EqualsAndHashCode
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode
-@Entity
-@Table(name = "autor", schema = "public")
-public class Autor {
+@ToString
+public class Livro {
+
 	@Id
-	@GeneratedValue(strategy = GenerationType.UUID)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private UUID id;
-	@Column(name = "nome", nullable = false, length = 100)
-	private String nome;
-	@Column(name = "nacionalidade", length = 50, nullable = false)
-	private String nacionalidade;
-	@Column(name = "data_nascimento", nullable = false)
-	private LocalDate dataNascimento;
+	@Column(name = "titulo")
+	private String tiulo;
+	@Column(name = "isdn")
+	private String isdn;
+	@Column(name = "dataPublicacao")
+	private LocalDate dataPublicacao;
+	@Column(name = "genero")
+	private Genero genero;
+	@Column(name = "preco")
+	private Double preco;
+	@OneToMany
+	@JoinColumn(name = "autor")
+	private Autor autor;
 	
 }
